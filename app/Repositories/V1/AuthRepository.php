@@ -2,9 +2,9 @@
 
 namespace App\Repositories\V1;
 
+use App\Enums\V1\RoleType;
 use App\Interfaces\AuthRepositoryInterface;
-use App\Models\{User, Customer} ;
-use Illuminate\Http\Response;
+use App\Models\{User, Customer};
 
 class AuthRepository implements AuthRepositoryInterface
 {
@@ -21,11 +21,28 @@ class AuthRepository implements AuthRepositoryInterface
     public function login($request)
     {
         if (!auth()->attempt($request)) {
-            return ['success' => false, 'message' => trans('app.authentication.invalid_login')];
+            $user = false;
+            return $user;
         }
 
         $user = auth()->user();
-        $user['token'] =  auth()->user()->createToken('customer')->plainTextToken;
+
+        switch ($user->role_type) {
+            case RoleType::ADMIN->value:
+                $tokenName = RoleType::ADMIN->value;
+                break;
+            case RoleType::CUSTOMER->value:
+                $tokenName = RoleType::CUSTOMER->value;
+                break;
+            case RoleType::EMPLOYEE->value:
+                $tokenName = RoleType::EMPLOYEE->value;
+                break;
+            default:
+                $tokenName = RoleType::CUSTOMER->value;
+                break;
+        }
+
+        $user['token'] =  auth()->user()->createToken($tokenName)->plainTextToken;
 
         return $user;
     }

@@ -26,10 +26,10 @@ class AuthController extends Controller
     {
         $user = $this->authRepository->login($request->validated());
 
-        if (!$user['success']) {
-            return response(['success' => false, 'message' => $user['message']]);
+        if (!$user) {
+            return response(['success' => $user, 'message' => trans('app.authentication.invalid_login')]);
         }
-        dd($user);
+
         return response(['success' => true, 'user' => $user]);
     }
 
