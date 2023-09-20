@@ -57,9 +57,14 @@ class TransactionRepository implements TransactionRepositoryInterface
     {
     }
 
+    public function showTransactionBankProfits()
+    {
+
+    }
+
     private function calculateTransferFees($amount)
     {
-        $transferFees = Setting::where('key', 'transfer_fees')->first()->value;
+        $transferFees = appSettings('transfer_fees');
         $feesAmount = ($amount * $transferFees) / 100;
         $netAmount = $amount * ((100 - $amount) / 100);
 

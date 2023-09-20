@@ -22,8 +22,8 @@ class PayrollRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => ['required', 'exists:employee,id'],
-            'date' => ['required', 'date', 'date_format:d/m/Y'],
+            'employee_id' => ['required', 'exists:employees,id'],
+            'date' => ['required', 'date', 'date_format:Y-m-d'],
             'salary' => ['required', 'numeric', 'gte:0'],
             'notes' => ['nullable', 'string', 'max:255'],
         ];

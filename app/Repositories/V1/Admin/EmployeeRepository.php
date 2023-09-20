@@ -2,6 +2,7 @@
 
 namespace App\Repositories\V1\Admin;
 
+use App\Enums\V1\RoleType;
 use App\Interfaces\EmployeeRepositoryInterface;
 use App\Models\{Employee, User};
 
@@ -24,8 +25,12 @@ class EmployeeRepository implements EmployeeRepositoryInterface
 
     public function store($request)
     {
-        $user = User::create($request + ['added_by' => auth()->id()]);
-        $user->customer()->save(new Employee());
+        $user = User::create($request + [
+            'added_by' => auth()->id(),
+            'role_type' => RoleType::EMPLOYEE->value
+        ]);
+
+        $user->employee()->save(new Employee());
 
         return $user;
     }
