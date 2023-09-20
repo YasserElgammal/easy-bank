@@ -23,7 +23,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     // Adminstartor
-    Route::middleware(['abilities:administrator'])->prefix('admin')->group(function () {
+    Route::middleware(['abilities:admin'])->prefix('admin')->group(function () {
         Route::apiResource('customers', CustomerController::class);
         Route::apiResource('employees', EmployeeController::class);
         Route::apiResource('payrolls', PayrollController::class);

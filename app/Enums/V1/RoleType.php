@@ -9,6 +9,6 @@ enum RoleType: string
     use EnumRetriever;
 
     case ADMIN = 'admin';
-    case EMPLOYEE = 'emploee';
+    case EMPLOYEE = 'employee';
     case CUSTOMER = 'customer';
 }
