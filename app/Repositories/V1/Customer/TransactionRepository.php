@@ -59,7 +59,7 @@ class TransactionRepository implements TransactionRepositoryInterface
 
     public function showTransactionBankProfits()
     {
-
+        return Transaction::sum('transfer_fees');
     }
 
     private function calculateTransferFees($amount)

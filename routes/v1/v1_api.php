@@ -19,17 +19,20 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
-    Route::middleware(['abilities:customer'])->group(function () {
-        Route::apiResource('transactions', CustomerTransactionController::class);
-    });
-
     // Adminstartor
     Route::middleware(['abilities:admin'])->prefix('admin')->group(function () {
+        Route::get('transactions/transfer-profit', [CustomerTransactionController::class, 'showTransactionBankProfits']);
         Route::apiResource('customers', CustomerController::class);
         Route::apiResource('employees', EmployeeController::class);
         Route::apiResource('payrolls', PayrollController::class);
         Route::apiResource('settings', SettingController::class);
     });
+
+    //Customer
+    Route::middleware(['abilities:customer'])->group(function () {
+        Route::apiResource('transactions', CustomerTransactionController::class);
+    });
+
 
 
     Route::post('logout', [AuthController::class, 'logout']);

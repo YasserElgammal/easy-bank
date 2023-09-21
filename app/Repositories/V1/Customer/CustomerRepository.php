@@ -24,7 +24,7 @@ class CustomerRepository implements CustomerRepositoryInterface
 
     public function store($request)
     {
-        $user = Customer::create($request);
+        $user = User::create($request);
         $user->customer()->save(new Customer());
 
         return $user;

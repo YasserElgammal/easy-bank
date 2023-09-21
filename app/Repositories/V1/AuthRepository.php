@@ -42,7 +42,7 @@ class AuthRepository implements AuthRepositoryInterface
                 break;
         }
 
-        $user['token'] =  auth()->user()->createToken($tokenName)->plainTextToken;
+        $user['token'] =  auth()->user()->createToken($tokenName, [$tokenName])->plainTextToken;
 
         return $user;
     }
