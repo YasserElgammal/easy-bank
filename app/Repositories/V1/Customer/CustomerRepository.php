@@ -4,6 +4,9 @@ namespace App\Repositories\V1\Customer;
 
 use App\Interfaces\CustomerRepositoryInterface;
 use App\Models\{Customer, User};
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CustomerRepository implements CustomerRepositoryInterface
 {
@@ -25,7 +28,20 @@ class CustomerRepository implements CustomerRepositoryInterface
     public function store($request)
     {
         $user = User::create($request);
-        $user->customer()->save(new Customer());
+
+        if (request('avatar')) {
+            $getFile = request('avatar')->store('images/customers');
+            $avatar = $getFile;
+        }
+
+        $user->customer()->save(new Customer([
+            'account_number' => Str::password(10, false, true, false, false),
+            'dob'  => $request['dob'],
+            'city'  => $request['city'],
+            'phone' => $request['phone'],
+            'balance' => $request['balance'],
+            'avatar' => $avatar ?? null,
+        ]));
 
         return $user;
     }
@@ -42,6 +58,10 @@ class CustomerRepository implements CustomerRepositoryInterface
     {
         $customer = Customer::findOrFail($id);
         $user = User::findOrFail($customer->user_id);
+
+        if ($customer->avatar && Storage::exists($customer->avatar)) {
+                Storage::delete($customer->avatar);
+        }
 
         return $user->delete();
     }
