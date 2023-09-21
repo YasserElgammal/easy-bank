@@ -37,9 +37,9 @@ class PayrollController extends Controller
         return $this->successReponse(data: PayrollResource::make($payroll));
     }
 
-    public function update($id, $request)
+    public function update($id, PayrollRequest $request)
     {
-        $transaction = $this->payrollRepository->update($id, $request);
+        $transaction = $this->payrollRepository->update($id, $request->validated());
 
         return $this->successReponse(message: trans('app.record_updated'));
     }

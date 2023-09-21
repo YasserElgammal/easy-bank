@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\V1\Admin\Employee\EmployeeController;
 use App\Http\Controllers\V1\Admin\Employee\PayrollController;
+use App\Http\Controllers\V1\Admin\SettingController;
 use App\Http\Controllers\V1\AuthController;
 use App\Http\Controllers\V1\Customer\CustomerController;
 use App\Http\Controllers\V1\Customer\CustomerTransactionController;
@@ -27,6 +28,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::apiResource('customers', CustomerController::class);
         Route::apiResource('employees', EmployeeController::class);
         Route::apiResource('payrolls', PayrollController::class);
+        Route::apiResource('settings', SettingController::class);
     });
 
 
