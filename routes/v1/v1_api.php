@@ -6,6 +6,7 @@ use App\Http\Controllers\V1\Admin\SettingController;
 use App\Http\Controllers\V1\AuthController;
 use App\Http\Controllers\V1\Customer\CustomerController;
 use App\Http\Controllers\V1\Customer\CustomerTransactionController;
+use App\Http\Controllers\V1\Customer\CustomerWithdrawalController;
 use Illuminate\Support\Facades\Route;
 
 // Echo
@@ -31,6 +32,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     //Customer
     Route::middleware(['abilities:customer'])->group(function () {
         Route::apiResource('transactions', CustomerTransactionController::class);
+        Route::apiResource('withdrawals', CustomerWithdrawalController::class);
     });
 
 

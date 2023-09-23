@@ -10,7 +10,7 @@ class TransactionRepository implements TransactionRepositoryInterface
 {
     public function index()
     {
-        $transactions = Transaction::with('senderUser')->where('receiver_id', auth()->id())->paginate(15);
+        $transactions = Transaction::with('senderUser')->where('receiver_id', auth()->user()->customer->id)->paginate(15);
 
         return $transactions;
     }
@@ -18,7 +18,7 @@ class TransactionRepository implements TransactionRepositoryInterface
     public function show($id)
     {
         $transaction = Transaction::with('senderUser.user', 'receiverUser.user')
-            ->where('receiver_id', auth()->id())->findOrFail($id);
+            ->where('receiver_id', auth()->user()->customer->id)->findOrFail($id);
 
         return $transaction;
     }
@@ -32,7 +32,7 @@ class TransactionRepository implements TransactionRepositoryInterface
             $loggedCustomer = auth()->user()->customer;
 
             $transaction = Transaction::create($request + [
-                'sender_id' => auth()->id(),
+                'sender_id' => auth()->user()->customer->id,
                 'net_amount' => $calculatedFees['netAmount'],
                 'transfer_fees' => $calculatedFees['feesAmount'],
             ]);

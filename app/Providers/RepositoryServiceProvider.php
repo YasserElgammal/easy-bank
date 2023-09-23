@@ -5,13 +5,14 @@ namespace App\Providers;
 use App\Interfaces\{
     AuthRepositoryInterface,
     CustomerRepositoryInterface,
+    CustomerWithdrawRepositoryInterface,
     EmployeeRepositoryInterface,
     PayrollRepositoryInterface,
     SettingRepositoryInterface,
-    TransactionRepositoryInterface
+    TransactionRepositoryInterface,
 };
 use App\Repositories\V1\Admin\{EmployeeRepository, PayrollRepository, SettingRepository};
-use App\Repositories\V1\Customer\{CustomerRepository, TransactionRepository};
+use App\Repositories\V1\Customer\{CustomerRepository, CustomerWithdrawalRepository, TransactionRepository, WithdrawalRepository};
 use App\Repositories\V1\AuthRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,6 +34,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
         $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
         $this->app->bind(TransactionRepositoryInterface::class, TransactionRepository::class);
+        $this->app->bind(CustomerWithdrawRepositoryInterface::class, CustomerWithdrawalRepository::class);
         $this->app->bind(EmployeeRepositoryInterface::class, EmployeeRepository::class);
         $this->app->bind(PayrollRepositoryInterface::class, PayrollRepository::class);
         $this->app->bind(SettingRepositoryInterface::class, SettingRepository::class);

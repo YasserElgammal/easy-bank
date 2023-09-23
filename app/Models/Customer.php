@@ -25,6 +25,11 @@ class Customer extends Model
         return $this->hasMany(Transaction::class, 'receiver_id');
     }
 
+    public function withdrawals()
+    {
+        return $this->hasMany(Withdrawal::class);
+    }
+
     public function scopeDecrementBalance($query, $amount)
     {
         return $query->where('user_id', auth()->id())->decrement('balance', $amount);
