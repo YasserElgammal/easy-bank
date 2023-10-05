@@ -36,6 +36,13 @@ class RegisterUserRequest extends FormRequest
                     ->symbols()
                     ->uncompromised(),
             ],
+            'dob'  => [
+                'required', 'date_format:Y-m-d',
+                'before:-' . appSettings('min_acceptable_age') . ' years'
+            ],
+            'city'  => ['required', 'string', 'min:3', 'max:20'],
+            'phone' => ['required', 'string', 'min:10', 'max:20'],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];
     }
 }

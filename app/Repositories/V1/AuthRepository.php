@@ -27,7 +27,6 @@ class AuthRepository implements AuthRepositoryInterface
             'dob'  => $request['dob'],
             'city'  => $request['city'],
             'phone' => $request['phone'],
-            'balance' => $request['balance'],
             'avatar' => $avatar ?? null,
         ]));
 
