@@ -4,7 +4,6 @@ namespace App\Http\Controllers\V1\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Api\RegisterCustomerRequest;
-use App\Http\Requests\V1\Api\RegisterUserRequest;
 use App\Http\Resources\V1\CustomerResource;
 use App\Interfaces\CustomerRepositoryInterface;
 

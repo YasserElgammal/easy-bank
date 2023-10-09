@@ -8,7 +8,6 @@ use App\Models\Deposit;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PayPalController extends Controller
 {
