@@ -10,18 +10,15 @@ use App\Interfaces\TransactionRepositoryInterface;
 
 class CustomerTransactionController extends Controller
 {
-    private TransactionRepositoryInterface $transactionRepository;
+    public function __construct(private TransactionRepositoryInterface $transactionRepository)
+    {
+    }
 
     public function index()
     {
         $transactions = $this->transactionRepository->index();
 
         return $this->successReponse(data: TransactionResource::collection($transactions));
-    }
-
-    public function __construct(TransactionRepositoryInterface $transactionRepository)
-    {
-        $this->transactionRepository = $transactionRepository;
     }
 
     public function store(CustomerTransactionRequest $request)

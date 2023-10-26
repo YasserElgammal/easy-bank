@@ -9,11 +9,8 @@ use App\Interfaces\CustomerWithdrawRepositoryInterface;
 
 class CustomerWithdrawalController extends Controller
 {
-    private CustomerWithdrawRepositoryInterface $customerWithdrawalRepository;
-
-    public function __construct(CustomerWithdrawRepositoryInterface $customerWithdrawalRepository)
+    public function __construct(private CustomerWithdrawRepositoryInterface $customerWithdrawalRepository)
     {
-        $this->customerWithdrawalRepository = $customerWithdrawalRepository;
     }
 
     public function index()
@@ -39,7 +36,7 @@ class CustomerWithdrawalController extends Controller
 
     public function destroy($id)
     {
-       $withdrawal =  $this->customerWithdrawalRepository->destroy($id);
+        $withdrawal =  $this->customerWithdrawalRepository->destroy($id);
 
         return $this->successReponse(message: $withdrawal ? trans('app.record_deleted') : trans('app.cannot_deleted'));
     }

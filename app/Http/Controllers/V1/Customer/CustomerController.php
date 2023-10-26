@@ -9,11 +9,8 @@ use App\Interfaces\CustomerRepositoryInterface;
 
 class CustomerController extends Controller
 {
-    private CustomerRepositoryInterface $customerRepository;
-
-    public function __construct(CustomerRepositoryInterface $customerRepository)
+    public function __construct(private CustomerRepositoryInterface $customerRepository)
     {
-        $this->customerRepository = $customerRepository;
     }
 
     public function index()

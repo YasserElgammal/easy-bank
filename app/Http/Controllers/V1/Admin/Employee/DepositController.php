@@ -4,19 +4,13 @@ namespace App\Http\Controllers\V1\Admin\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerDepositRequest;
-use App\Http\Requests\V1\PayrollRequest;
-use App\Http\Resources\V1\CustomerDepositResource;
-use App\Http\Resources\V1\PayrollResource;
+use App\Http\Resources\V1\{CustomerDepositResource, PayrollResource};
 use App\Interfaces\DepositRepositoryInterface;
-use App\Interfaces\PayrollRepositoryInterface;
 
 class DepositController extends Controller
 {
-    private DepositRepositoryInterface $depositRepository;
-
-    public function __construct(DepositRepositoryInterface $depositRepository)
+    public function __construct(private DepositRepositoryInterface $depositRepository)
     {
-        $this->depositRepository = $depositRepository;
     }
 
     public function index()

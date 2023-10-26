@@ -8,11 +8,8 @@ use App\Interfaces\AuthRepositoryInterface;
 
 class AuthController extends Controller
 {
-    private AuthRepositoryInterface $authRepository;
-
-    public function __construct(AuthRepositoryInterface $authRepository)
+    public function __construct(private AuthRepositoryInterface $authRepository)
     {
-        $this->authRepository = $authRepository;
     }
 
     public function register(RegisterUserRequest $request)

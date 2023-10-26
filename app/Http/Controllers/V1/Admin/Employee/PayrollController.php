@@ -9,11 +9,8 @@ use App\Interfaces\PayrollRepositoryInterface;
 
 class PayrollController extends Controller
 {
-    private PayrollRepositoryInterface $payrollRepository;
-
-    public function __construct(PayrollRepositoryInterface $payrollRepository)
+    public function __construct(private PayrollRepositoryInterface $payrollRepository)
     {
-        $this->payrollRepository = $payrollRepository;
     }
 
     public function index()

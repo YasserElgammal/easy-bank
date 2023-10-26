@@ -10,11 +10,8 @@ use Illuminate\Http\Request;
 
 class CustomerDespositController extends Controller
 {
-    private CustomerDepositRepositoryInterface $customerDepositRepository;
-
-    public function __construct(CustomerDepositRepositoryInterface $customerDepositRepository)
+    public function __construct(private CustomerDepositRepositoryInterface $customerDepositRepository)
     {
-        $this->customerDepositRepository = $customerDepositRepository;
     }
 
     public function index()

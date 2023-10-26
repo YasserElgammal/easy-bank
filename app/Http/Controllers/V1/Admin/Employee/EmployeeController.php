@@ -9,11 +9,8 @@ use App\Interfaces\EmployeeRepositoryInterface;
 
 class EmployeeController extends Controller
 {
-    private EmployeeRepositoryInterface $employeeRepository;
-
-    public function __construct(EmployeeRepositoryInterface $employeeRepository)
+    public function __construct(private EmployeeRepositoryInterface $employeeRepository)
     {
-        $this->employeeRepository = $employeeRepository;
     }
 
     public function store(RegisterUserRequest $request)

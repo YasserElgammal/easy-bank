@@ -9,11 +9,8 @@ use App\Interfaces\SettingRepositoryInterface;
 
 class SettingController extends Controller
 {
-    private SettingRepositoryInterface $settingRepository;
-
-    public function __construct(SettingRepositoryInterface $settingRepository)
+    public function __construct(private SettingRepositoryInterface $settingRepository)
     {
-        $this->settingRepository = $settingRepository;
     }
 
     public function index()
